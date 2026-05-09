@@ -78,7 +78,7 @@ uint8_t amis::AMISComponent::dif2len(uint8_t dif) {
 void amis::AMISComponent::amis_decode() {
   char cs=0;
   int i;
-  uint64_t temp;
+  uint32_t temp;
   struct tm t;
   uint8_t dif;
   uint8_t vif;
