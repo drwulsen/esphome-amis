@@ -196,7 +196,7 @@ void amis::AMISComponent::amis_decode() {
               ESP_LOGD(TAG, "temp %d", energy_a_positive_sensor);
               this->energy_a_positive_sensor->publish_state(temp);
           }
-        break;/*
+        break;
         case 0x83:
           if(dif == 0x04 && vife == 0x3c) {
             // 2.8.0
@@ -205,7 +205,7 @@ void amis::AMISComponent::amis_decode() {
             if(this->energy_a_negative_sensor)
               this->energy_a_negative_sensor->publish_state(temp);
           }
-        break;
+        break;/*
         case 0xfb:
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
