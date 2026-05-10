@@ -186,7 +186,7 @@ void amis::AMISComponent::amis_decode() {
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "%ld 1.8.0:", temp); //debug
             if(this->energy_a_positive_sensor) {
-              ESP_LOGD(TAG, "energy_a_positive_sensor: %ld", energy_a_positive_sensor);
+              ESP_LOGD(TAG, "%ld energy_a_positive_sensor:", energy_a_positive_sensor);
 //              this->energy_a_positive_sensor->publish_state(temp);
             }
           }
@@ -206,7 +206,7 @@ void amis::AMISComponent::amis_decode() {
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "3.8.1: %d", temp);
+            ESP_LOGD(TAG, "%lld 3.8.1:", temp);
             if(this->reactive_energy_a_positive_sensor) {
               ESP_LOGD(TAG, "reactive_energy_a_positive_sensor: %d", reactive_energy_a_positive_sensor);
 //              this->reactive_energy_a_positive_sensor->publish_state(temp);
