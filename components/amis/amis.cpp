@@ -122,7 +122,7 @@ void amis::AMISComponent::amis_decode() {
     // https://github.com/volkszaehler/vzlogger/blob/master/src/protocols/MeterOMS.cpp
     // line 591
 
-
+ESP_LOGD(TAG, "2.8.0");
 
     i = 2;
     // 80 is the maximum size of data that we decrypt
