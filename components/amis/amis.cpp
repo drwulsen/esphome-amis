@@ -249,7 +249,7 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "1.7.0: %d", temp);
             if(this->instantaneous_power_a_positive_sensor)
               ESP_LOGD(TAG, "instantaneous_power_a_positive_sensor: %d", instantaneous_power_a_positive_sensor);
-//              this->instantaneous_power_a_positive_sensor->publish_state(temp);
+              this->instantaneous_power_a_positive_sensor->publish_state(temp);
           }
         break;
         case 0xab:
