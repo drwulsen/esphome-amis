@@ -201,12 +201,10 @@ void amis::AMISComponent::amis_decode() {
             // 2.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "2.8.0: %d", temp);
-		  }
-		break;/*
             if(this->energy_a_negative_sensor)
               this->energy_a_negative_sensor->publish_state(temp);
           }
-        break;
+        break;/*
         case 0xfb:
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
