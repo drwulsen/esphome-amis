@@ -164,8 +164,9 @@ void amis::AMISComponent::amis_decode() {
           t.tm_hour = this->decode_buffer[i+2] & 0x1f;
           t.tm_mday = this->decode_buffer[i+3] & 0x1f;
           t.tm_mon = this->decode_buffer[i+4] & 0xf;
-          if(t.tm_mon > 0)
+          if(t.tm_mon > 0) {
             t.tm_mon -= 1;
+          }
           t.tm_year = 100 + (((this->decode_buffer[i+3] & 0xe0) >> 5) | ((this->decode_buffer[i+4] & 0xf0) >> 1));
           t.tm_isdst = ((this->decode_buffer[i] & 0x40) == 0x40) ? 1 : 0;
 
@@ -176,13 +177,13 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "time=%.2d-%.2d-%.2d %.2d:%.2d:%.2d", 1900 + t.tm_year, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
             ESP_LOGD(TAG, "timestamp=%ld", mktime(&t));
           }
-          if(this->timestamp_sensor)
+          if(this->timestamp_sensor) {
             this->timestamp_sensor->publish_state(mktime(&t));
+          }
         break;
         case 0x03:
           if(dif == 0x04) {
             // 1.8.0
-            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.8.0: %d", temp); //debug
             if(this->energy_a_positive_sensor) {
@@ -194,7 +195,6 @@ void amis::AMISComponent::amis_decode() {
         case 0x83:
           if(dif == 0x04 && vife == 0x3c) {
             // 2.8.0
-            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "2.8.0: %d", temp);
             if(this->energy_a_negative_sensor) {
@@ -206,61 +206,62 @@ void amis::AMISComponent::amis_decode() {
         case 0xfb:
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
-            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "3.8.1: %d", temp);
-            if(this->reactive_energy_a_positive_sensor)
+            if(this->reactive_energy_a_positive_sensor) {
               ESP_LOGD(TAG, "reactive_energy_a_positive_sensor: %d", reactive_energy_a_positive_sensor);
 //              this->reactive_energy_a_positive_sensor->publish_state(temp);
+            }
           }
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
-            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "4.8.1: %d", temp);
-            if(this->reactive_energy_a_negative_sensor)
+            if(this->reactive_energy_a_negative_sensor) {
               ESP_LOGD(TAG, "reactive_energy_a_negative_sensor: %d", reactive_energy_a_negative_sensor);
 //              this->reactive_energy_a_negative_sensor->publish_state(temp);
+            }
           }
          if(dif == 0x04 && dife == 0x00 && vife == 0x14) {
             // 3.7.0
-           long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "3.7.0: %d", temp);
-            if(this->reactive_instantaneous_power_a_positive_sensor)
+            if(this->reactive_instantaneous_power_a_positive_sensor) {
               ESP_LOGD(TAG, "reactive_instantaneous_power_a_positive_sensor: %d", reactive_energy_a_positive_sensor);
 //              this->reactive_instantaneous_power_a_positive_sensor->publish_state(temp);
+            }
           }
           if(dif == 0x04 && dife == 0x00 && vife == 0x3c) {
             // 4.7.0
-            long temp;
+
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "4.7.0: %d", temp);
-            if(this->reactive_instantaneous_power_a_negative_sensor)
+            if(this->reactive_instantaneous_power_a_negative_sensor) {
               ESP_LOGD(TAG, "reactive_instantaneous_power_a_negative_sensor: %d", reactive_instantaneous_power_a_negative_sensor);
 //              this->reactive_instantaneous_power_a_negative_sensor->publish_state(temp);
+            }
           }
         break;
         case 0x2b:
           if(dif == 0x04) {
             // 1.7.0
-            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.7.0: %d", temp);
-            if(this->instantaneous_power_a_positive_sensor)
+            if(this->instantaneous_power_a_positive_sensor) {
               ESP_LOGD(TAG, "instantaneous_power_a_positive_sensor: %d", instantaneous_power_a_positive_sensor);
 //              this->instantaneous_power_a_positive_sensor->publish_state(temp);
+            }
           }
         break;
         case 0xab:
           if(dif == 0x04 && vife == 0x3c) {
             // 2.7.0
-            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "2.7.0: %d", temp);
-            if(this->instantaneous_power_a_negative_sensor)
+            if(this->instantaneous_power_a_negative_sensor) {
               ESP_LOGD(TAG, "instantaneous_power_a_negative_sensor: %d", instantaneous_power_a_negative_sensor);
 //              this->instantaneous_power_a_negative_sensor->publish_state(temp);
+            }
           }
         break;
       }
@@ -292,9 +293,9 @@ void amis::AMISComponent::loop() {
     if((this->bytes + cnt) < sizeof(this->buffer)) {
 	  this->read_array(&this->buffer[bytes], cnt);
 	  bytes += cnt;
-  
-	  cnt = this->available();
-    } else {
+      cnt = this->available();
+    }
+    else {
       ESP_LOGD(TAG, "rcv'd incomplete frame, clearing buffer");
       while(cnt > 0) {
         this->read_array(this->buffer, cnt);
@@ -309,7 +310,8 @@ void amis::AMISComponent::loop() {
         ESP_LOGD(TAG, "ack'ed frame");
         this->write_byte(0xe5);
         this->bytes = 0;
-      } else {
+        }
+        else {
         if(this->buffer[0] == 0x68 && this->buffer[3] == 0x68) {
           this->expect = this->buffer[1] + 6;
         }
