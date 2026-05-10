@@ -74,7 +74,7 @@ uint8_t amis::AMISComponent::dif2len(uint8_t dif) {
 void amis::AMISComponent::amis_decode() {
   char cs=0;
   int i;
-  PRId32 temp;
+  uint32_t temp;
   struct tm t;
   uint8_t dif;
   uint8_t vif;
@@ -185,7 +185,7 @@ void amis::AMISComponent::amis_decode() {
           if(dif == 0x04) {
             // 1.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "1.8.0: %d", temp);
+            ESP_LOGD(TAG, "1.8.0: " PRIu32 , temp);
             if(this->energy_a_positive_sensor) {
               this->energy_a_positive_sensor->publish_state(temp);
             }
