@@ -1,3 +1,4 @@
+// Just some comment, so esphome will update
 #include "amis.h"
 #include "aes.h"
 #include "esphome/core/log.h"
@@ -12,6 +13,7 @@ static const char *TAG = "amis";
 #define CHR2BIN(c) (c-(c>='A'?55:48))
 
 #define OFFS_DIF 19
+ESP_LOGD(TAG, "Started AMIS");
 
 void amis::AMISComponent::setup() {
   this->bytes = 0;
