@@ -8,15 +8,12 @@ namespace esphome {
 namespace amis {
 
 static const char *TAG = "amis";
-
 #define CHR2BIN(c) (c-(c>='A'?55:48))
-
 #define OFFS_DIF 19
 
 void amis::AMISComponent::setup() {
   this->bytes = 0;
   this->expect = 0;
-
 }
 
 void amis::AMISComponent::hex2bin(const std::string s, uint8_t *buf) {
@@ -33,8 +30,7 @@ void amis::AMISComponent::set_power_grid_key(const std::string &power_grid_key) 
 }
 
 uint8_t amis::AMISComponent::dif2len(uint8_t dif) {
-  switch (dif&0x0F)
-  {
+  switch (dif&0x0F) {
     case 0x0:
       return 0;
     case 0x1:
@@ -69,7 +65,6 @@ uint8_t amis::AMISComponent::dif2len(uint8_t dif) {
       return 6;
     case 0xF:
       return 8;
-
     default: // never reached
       return 0x00;
   }
@@ -282,7 +277,7 @@ void amis::AMISComponent::loop() {
   // Do we actually need a loop?
   uint8_t cnt = this->available();
   while (cnt > 0) {
-//    ESP_LOGD(TAG, "bytes available, reading");
+    ESP_LOGD(TAG, "bytes available, reading");
     if((this->bytes + cnt) < sizeof(this->buffer)) {
 	  this->read_array(&this->buffer[bytes], cnt);
 	  bytes += cnt;
