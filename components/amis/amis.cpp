@@ -230,7 +230,7 @@ void amis::AMISComponent::amis_decode() {
             // 4.7.0
 
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "%4.7.0: %" PRIu32 , temp);
+            ESP_LOGD(TAG, '%4.7.0: %' PRIu32 , temp);
             if(this->reactive_instantaneous_power_a_negative_sensor) {
 //              this->reactive_instantaneous_power_a_negative_sensor->publish_state(temp);
             }
