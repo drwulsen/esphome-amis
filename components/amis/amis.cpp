@@ -207,7 +207,7 @@ void amis::AMISComponent::amis_decode() {
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "3.8.1: %" PRIu32 , temp);
             if(this->reactive_energy_a_positive_sensor) {
-//              this->reactive_energy_a_positive_sensor->publish_state(temp);
+              this->reactive_energy_a_positive_sensor->publish_state(PRIu32 , temp);
             }
           }
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
