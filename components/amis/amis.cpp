@@ -8,7 +8,6 @@ namespace esphome {
 namespace amis {
 
 static const char *TAG = "amis";
-long temp;
 #define CHR2BIN(c) (c-(c>='A'?55:48))
 #define OFFS_DIF 19
 
@@ -183,6 +182,7 @@ void amis::AMISComponent::amis_decode() {
         case 0x03:
           if(dif == 0x04) {
             // 1.8.0
+            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.8.0: %d", temp); //debug
             if(this->energy_a_positive_sensor) {
@@ -194,6 +194,7 @@ void amis::AMISComponent::amis_decode() {
         case 0x83:
           if(dif == 0x04 && vife == 0x3c) {
             // 2.8.0
+            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "2.8.0: %d", temp);
             if(this->energy_a_negative_sensor) {
@@ -205,6 +206,7 @@ void amis::AMISComponent::amis_decode() {
         case 0xfb:
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
+            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "3.8.1: %d", temp);
             if(this->reactive_energy_a_positive_sensor)
@@ -213,6 +215,7 @@ void amis::AMISComponent::amis_decode() {
           }
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
+            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "4.8.1: %d", temp);
             if(this->reactive_energy_a_negative_sensor)
@@ -221,6 +224,7 @@ void amis::AMISComponent::amis_decode() {
           }
          if(dif == 0x04 && dife == 0x00 && vife == 0x14) {
             // 3.7.0
+           long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "3.7.0: %d", temp);
             if(this->reactive_instantaneous_power_a_positive_sensor)
@@ -229,6 +233,7 @@ void amis::AMISComponent::amis_decode() {
           }
           if(dif == 0x04 && dife == 0x00 && vife == 0x3c) {
             // 4.7.0
+            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "4.7.0: %d", temp);
             if(this->reactive_instantaneous_power_a_negative_sensor)
@@ -239,6 +244,7 @@ void amis::AMISComponent::amis_decode() {
         case 0x2b:
           if(dif == 0x04) {
             // 1.7.0
+            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.7.0: %d", temp);
             if(this->instantaneous_power_a_positive_sensor)
@@ -249,6 +255,7 @@ void amis::AMISComponent::amis_decode() {
         case 0xab:
           if(dif == 0x04 && vife == 0x3c) {
             // 2.7.0
+            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "2.7.0: %d", temp);
             if(this->instantaneous_power_a_negative_sensor)
