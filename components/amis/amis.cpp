@@ -187,11 +187,12 @@ void amis::AMISComponent::amis_decode() {
           if(this->timestamp_sensor)
             this->timestamp_sensor->publish_state(mktime(&t));
         break;
-/*        case 0x03:
+        case 0x03:
           if(dif == 0x04) {
             // 1.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.8.0: %d", temp);
+		break/*
             if(this->energy_a_positive_sensor)
               ESP_LOGD(TAG, "temp %d", energy_a_positive_sensor);
 //              this->energy_a_positive_sensor->publish_state(temp);
