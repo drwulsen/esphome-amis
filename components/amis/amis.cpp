@@ -282,7 +282,7 @@ void amis::AMISComponent::loop() {
   // Do we actually need a loop?
   uint8_t cnt = this->available();
   while (cnt > 0) {
-    ESP_LOGD(TAG, "bytes available, reading");
+//    ESP_LOGD(TAG, "bytes available, reading");
     if((this->bytes + cnt) < sizeof(this->buffer)) {
 	  this->read_array(&this->buffer[bytes], cnt);
 	  bytes += cnt;
