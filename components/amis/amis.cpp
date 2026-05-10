@@ -186,7 +186,7 @@ void amis::AMISComponent::amis_decode() {
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "%ld 1.8.0:", temp); //debug
             if(this->energy_a_positive_sensor) {
-//              this->energy_a_positive_sensor->publish_state(temp);
+              this->energy_a_positive_sensor->publish_state(temp);
             }
           }
         break;
@@ -318,4 +318,3 @@ void amis::AMISComponent::loop() {
 
 }  // namespace amis
 }  // namespace esphome
-shit
