@@ -122,7 +122,7 @@ void amis::AMISComponent::amis_decode() {
     // https://github.com/volkszaehler/vzlogger/blob/master/src/protocols/MeterOMS.cpp
     // line 591
 
-ESP_LOGD(TAG, "3.8.1");
+ESP_LOGD(TAG, "4.8.1");
 
     i = 2;
     // 80 is the maximum size of data that we decrypt
@@ -213,7 +213,6 @@ ESP_LOGD(TAG, "3.8.1");
             if(this->reactive_energy_a_positive_sensor)
               this->reactive_energy_a_positive_sensor->publish_state(temp);
           }
-		break;/*
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
@@ -221,6 +220,7 @@ ESP_LOGD(TAG, "3.8.1");
             if(this->reactive_energy_a_negative_sensor)
               this->reactive_energy_a_negative_sensor->publish_state(temp);
           }
+		break;/*
           if(dif == 0x04 && dife == 0x00 && vife == 0x14) {
             // 3.7.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
