@@ -192,6 +192,7 @@ void amis::AMISComponent::amis_decode() {
             // 1.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.8.0: %d", temp);
+		  } //remove
 		break;/*
             if(this->energy_a_positive_sensor)
               ESP_LOGD(TAG, "temp %d", energy_a_positive_sensor);
