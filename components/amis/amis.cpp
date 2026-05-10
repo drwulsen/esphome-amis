@@ -318,3 +318,4 @@ void amis::AMISComponent::loop() {
 
 }  // namespace amis
 }  // namespace esphome
+shit
