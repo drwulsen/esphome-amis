@@ -13,12 +13,10 @@ static const char *TAG = "amis";
 #define CHR2BIN(c) (c-(c>='A'?55:48))
 
 #define OFFS_DIF 19
-ESP_LOGD(TAG, "Started AMIS");
 
 void amis::AMISComponent::setup() {
   this->bytes = 0;
   this->expect = 0;
-
 }
 
 void amis::AMISComponent::hex2bin(const std::string s, uint8_t *buf) {
@@ -88,6 +86,7 @@ void amis::AMISComponent::amis_decode() {
   uint8_t vife;
   uint8_t data_len;
 
+  ESP_LOGD(TAG, "Started AMIS");
   if(this->bytes < 78) {
     ESP_LOGD(TAG, "received incomplete frame");
     goto out;
@@ -123,8 +122,6 @@ void amis::AMISComponent::amis_decode() {
 
     // https://github.com/volkszaehler/vzlogger/blob/master/src/protocols/MeterOMS.cpp
     // line 591
-
-
 
     i = 2;
     // 80 is the maximum size of data that we decrypt
