@@ -204,7 +204,7 @@ void amis::AMISComponent::amis_decode() {
             if(this->energy_a_negative_sensor)
               this->energy_a_negative_sensor->publish_state(temp);
           }
-		break;
+		break;/*
         case 0xfb:
 			ESP_LOGD(TAG, "before 3.8.1");
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
