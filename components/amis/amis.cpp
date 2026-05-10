@@ -219,7 +219,7 @@ void amis::AMISComponent::amis_decode() {
 //            if(this->reactive_energy_a_negative_sensor)
  //             this->reactive_energy_a_negative_sensor->publish_state(temp);
           }
-//         if(dif == 0x04 && dife == 0x00 && vife == 0x14) {
+         if(dif == 0x04 && dife == 0x00 && vife == 0x14) {
             // 3.7.0
 //            memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "3.7.0: %d", temp);
@@ -253,8 +253,7 @@ void amis::AMISComponent::amis_decode() {
           }
         break;
       }
-      
-      
+
       i += data_len;
     }
 
