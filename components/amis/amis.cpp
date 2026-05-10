@@ -253,9 +253,9 @@ void amis::AMISComponent::amis_decode() {
             if(this->instantaneous_power_a_negative_sensor)
               this->instantaneous_power_a_negative_sensor->publish_state(temp);
           }
+		*/
         break;
-      }
-*/      
+      }      
       
       i += data_len;
     }
