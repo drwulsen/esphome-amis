@@ -184,7 +184,7 @@ void amis::AMISComponent::amis_decode() {
                  1900 + t.tm_year, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
             ESP_LOGD(TAG, "timestamp=%ld", mktime(&t));
           }
-          if(this->timestamp_sensor)
+/*          if(this->timestamp_sensor)
             this->timestamp_sensor->publish_state(mktime(&t));
         break;
         case 0x03:
@@ -255,7 +255,7 @@ void amis::AMISComponent::amis_decode() {
           }
         break;
       }
-      
+*/      
       
       i += data_len;
     }
