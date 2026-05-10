@@ -122,8 +122,6 @@ void amis::AMISComponent::amis_decode() {
     // https://github.com/volkszaehler/vzlogger/blob/master/src/protocols/MeterOMS.cpp
     // line 591
 
-ESP_LOGD(TAG, "4.8.1");
-
     i = 2;
     // 80 is the maximum size of data that we decrypt
     while(i < 80) {
@@ -188,15 +186,18 @@ ESP_LOGD(TAG, "4.8.1");
             this->timestamp_sensor->publish_state(mktime(&t));
         break;
         case 0x03:
+		  ESP_LOGD(TAG, "before 1.8.0");
           if(dif == 0x04) {
             // 1.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "1.8.0: %d", temp);
+            ESP_LOGD(TAG, "1.8.0: %d", temp); //debug
             if(this->energy_a_positive_sensor)
               this->energy_a_positive_sensor->publish_state(temp);
           }
         break;
+		  ESP_LOGD(TAG, "before 0x83");
         case 0x83:
+			ESP_LOGD(TAG, "before 2.8.0");
           if(dif == 0x04 && vife == 0x3c) {
             // 2.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
@@ -204,8 +205,10 @@ ESP_LOGD(TAG, "4.8.1");
             if(this->energy_a_negative_sensor)
               this->energy_a_negative_sensor->publish_state(temp);
           }
-        break;
+        break;/*
+		  ESP_LOGD(TAG, "before 0xfb");
         case 0xfb:
+			ESP_LOGD(TAG, "before 3.8.1");
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
@@ -213,6 +216,8 @@ ESP_LOGD(TAG, "4.8.1");
             if(this->reactive_energy_a_positive_sensor)
               this->reactive_energy_a_positive_sensor->publish_state(temp);
           }
+			ESP_LOGD(TAG, "after 3.8.1");
+			break;/*
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
@@ -220,7 +225,6 @@ ESP_LOGD(TAG, "4.8.1");
             if(this->reactive_energy_a_negative_sensor)
               this->reactive_energy_a_negative_sensor->publish_state(temp);
           }
-		break;/*
           if(dif == 0x04 && dife == 0x00 && vife == 0x14) {
             // 3.7.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
