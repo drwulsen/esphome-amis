@@ -186,7 +186,6 @@ void amis::AMISComponent::amis_decode() {
             this->timestamp_sensor->publish_state(mktime(&t));
         break;
         case 0x03:
-		  ESP_LOGD(TAG, "before 1.8.0");
           if(dif == 0x04) {
             // 1.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
@@ -196,7 +195,6 @@ void amis::AMISComponent::amis_decode() {
           }
         break;
         case 0x83:
-			ESP_LOGD(TAG, "before 2.8.0");
           if(dif == 0x04 && vife == 0x3c) {
             // 2.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
@@ -211,14 +209,14 @@ void amis::AMISComponent::amis_decode() {
             // 3.8.1
  //           memcpy(&temp, &this->decode_buffer[i], data_len);
             uint32_t length = (decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "%d", length);
+            ESP_LOGD(TAG, "lenth: %d", length);
             ESP_LOGD(TAG, "3.8.1: %d", temp);
             reactive_energy_a_positive_sensor = 0;
             if(this->reactive_energy_a_positive_sensor)
               this->reactive_energy_a_positive_sensor->publish_state(temp);
           }
 			ESP_LOGD(TAG, "after 3.8.1");
-			break;/*
+          break;/*
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
