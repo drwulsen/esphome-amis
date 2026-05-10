@@ -137,7 +137,6 @@ void amis::AMISComponent::amis_decode() {
       }
 
       i++;
-ESP_LOGD(TAG "so it begins");
       vif = this->decode_buffer[i];
       if(vif == 0x7c) {
         ESP_LOGE(TAG, "Variable length vif not supported.");
@@ -175,7 +174,7 @@ ESP_LOGD(TAG "so it begins");
             goto out;
           } else {
             ESP_LOGD(TAG, "time=%.2d-%.2d-%.2d %.2d:%.2d:%.2d", 1900 + t.tm_year, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
-            ESP_LOGD(TAG, "timestamp=%ld", mktime(&t));
+            ESP_LOGD(TAG, "timestamp=%lld", mktime(&t));
           }
           if(this->timestamp_sensor) {
             this->timestamp_sensor->publish_state(mktime(&t));
