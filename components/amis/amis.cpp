@@ -195,7 +195,7 @@ void amis::AMISComponent::amis_decode() {
           if(dif == 0x04 && vife == 0x3c) {
             // 2.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "2.8.0: %d", temp);
+            ESP_LOGD(TAG, "2.8.0: " PRIu32 , temp);
             if(this->energy_a_negative_sensor) {
 //              this->energy_a_negative_sensor->publish_state(temp);
             }
@@ -205,7 +205,7 @@ void amis::AMISComponent::amis_decode() {
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "3.8.1: %d", temp);
+            ESP_LOGD(TAG, "3.8.1:" PRIu32 , temp);
             if(this->reactive_energy_a_positive_sensor) {
 //              this->reactive_energy_a_positive_sensor->publish_state(temp);
             }
@@ -213,7 +213,7 @@ void amis::AMISComponent::amis_decode() {
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "4.8.1: %d", temp);
+            ESP_LOGD(TAG, "4.8.1: " PRIu32 , temp);
             if(this->reactive_energy_a_negative_sensor) {
 //              this->reactive_energy_a_negative_sensor->publish_state(temp);
             }
@@ -221,7 +221,7 @@ void amis::AMISComponent::amis_decode() {
          if(dif == 0x04 && dife == 0x00 && vife == 0x14) {
             // 3.7.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "3.7.0: %d", temp);
+            ESP_LOGD(TAG, "3.7.0: " PRIu32 , temp);
             if(this->reactive_instantaneous_power_a_positive_sensor) {
 //              this->reactive_instantaneous_power_a_positive_sensor->publish_state(temp);
             }
@@ -230,7 +230,7 @@ void amis::AMISComponent::amis_decode() {
             // 4.7.0
 
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "%4.7.0: %d", temp);
+            ESP_LOGD(TAG, "%4.7.0: " PRIu32 , temp);
             if(this->reactive_instantaneous_power_a_negative_sensor) {
 //              this->reactive_instantaneous_power_a_negative_sensor->publish_state(temp);
             }
@@ -240,7 +240,7 @@ void amis::AMISComponent::amis_decode() {
           if(dif == 0x04) {
             // 1.7.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "%1.7.0: %d", temp);
+            ESP_LOGD(TAG, "%1.7.0: " PRIu32 , temp);
             if(this->instantaneous_power_a_positive_sensor) {
 //              this->instantaneous_power_a_positive_sensor->publish_state(temp);
             }
@@ -250,7 +250,7 @@ void amis::AMISComponent::amis_decode() {
           if(dif == 0x04 && vife == 0x3c) {
             // 2.7.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "2.7.0: %d", temp);
+            ESP_LOGD(TAG, "2.7.0: " PRIu32 , temp);
             if(this->instantaneous_power_a_negative_sensor) {
 //              this->instantaneous_power_a_negative_sensor->publish_state(temp);
             }
