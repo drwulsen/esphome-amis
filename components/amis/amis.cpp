@@ -137,7 +137,7 @@ void amis::AMISComponent::amis_decode() {
       }
 
       i++;
-
+ESP_LOGD(TAG "so it begins");
       vif = this->decode_buffer[i];
       if(vif == 0x7c) {
         ESP_LOGE(TAG, "Variable length vif not supported.");
