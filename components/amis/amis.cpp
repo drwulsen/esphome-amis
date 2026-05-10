@@ -201,7 +201,8 @@ void amis::AMISComponent::amis_decode() {
             // 2.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
             uint32_t length = (decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "2.8.0: %d", temp, length);
+            ESP_LOGD(TAG, "2.8.0: %d", temp);
+            ESP_LOGD(TAG, length);
             if(this->energy_a_negative_sensor)
               this->energy_a_negative_sensor->publish_state(temp);
           }
