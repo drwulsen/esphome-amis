@@ -206,6 +206,7 @@ void amis::AMISComponent::amis_decode() {
         case 0xfb:
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
+            long temp;
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "3.8.1: %d", temp);
             long reactive_energy_a_positive_sensor;
@@ -283,7 +284,7 @@ void amis::AMISComponent::loop() {
   // Do we actually need a loop?
   uint8_t cnt = this->available();
   while (cnt > 0) {
-    ESP_LOGD(TAG, "bytes available, reading");
+//    ESP_LOGD(TAG, "bytes available, reading");
     if((this->bytes + cnt) < sizeof(this->buffer)) {
 	  this->read_array(&this->buffer[bytes], cnt);
 	  bytes += cnt;
