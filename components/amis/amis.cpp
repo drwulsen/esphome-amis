@@ -192,13 +192,11 @@ void amis::AMISComponent::amis_decode() {
             // 1.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.8.0: %d", temp);
-		  } //remove
-		break;/*
             if(this->energy_a_positive_sensor)
               ESP_LOGD(TAG, "temp %d", energy_a_positive_sensor);
-//              this->energy_a_positive_sensor->publish_state(temp);
+              this->energy_a_positive_sensor->publish_state(temp);
           }
-        break;
+        break;/*
         case 0x83:
           if(dif == 0x04 && vife == 0x3c) {
             // 2.8.0
