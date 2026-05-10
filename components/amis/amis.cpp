@@ -254,8 +254,8 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "2.7.0: %d", temp);
             if(this->instantaneous_power_a_negative_sensor)
               this->instantaneous_power_a_negative_sensor->publish_state(temp);
-          }*/
-        break;
+          }
+        break;*/
       }
       
       
