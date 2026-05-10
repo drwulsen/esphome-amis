@@ -185,9 +185,10 @@ void amis::AMISComponent::amis_decode() {
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.8.0: %d", temp); //debug
             int energy_a_positive_sensor;
-            if(this->energy_a_positive_sensor)
+            if(this->energy_a_positive_sensor) {
               ESP_LOGD(TAG, "energy_a_positive_sensor: %d", energy_a_positive_sensor);
               this->energy_a_positive_sensor->publish_state(temp);
+            }
           }
         break;
         case 0x83:
@@ -196,9 +197,10 @@ void amis::AMISComponent::amis_decode() {
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "2.8.0: %d", temp);
             int energy_a_negative_sensor;
-            if(this->energy_a_negative_sensor)
+            if(this->energy_a_negative_sensor) {
               ESP_LOGD(TAG, "energy_a_negative_sensor: %d", energy_a_negative_sensor);
               this->energy_a_negative_sensor->publish_state(temp);
+            }
           }
 		break;
         case 0xfb:
