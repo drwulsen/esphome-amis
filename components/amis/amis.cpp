@@ -173,8 +173,7 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "time invalid");
             goto out;
           } else {
-            ESP_LOGD(TAG, "time=%.2d-%.2d-%.2d %.2d:%.2d:%.2d",
-                 1900 + t.tm_year, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
+            ESP_LOGD(TAG, "time=%.2d-%.2d-%.2d %.2d:%.2d:%.2d", 1900 + t.tm_year, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
             ESP_LOGD(TAG, "timestamp=%ld", mktime(&t));
           }
           if(this->timestamp_sensor)
@@ -186,6 +185,7 @@ void amis::AMISComponent::amis_decode() {
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "1.8.0: %d", temp); //debug
             if(this->energy_a_positive_sensor)
+              ESP_LOGD(TAG, "energy_a_positive_sensor: %d", energy_a_positive_sensor);
               this->energy_a_positive_sensor->publish_state(temp);
           }
         break;
@@ -195,6 +195,7 @@ void amis::AMISComponent::amis_decode() {
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "2.8.0: %d", temp);
             if(this->energy_a_negative_sensor)
+              ESP_LOGD(TAG, "energy_a_negative_sensor: %d", energy_a_negative_sensor);
               this->energy_a_negative_sensor->publish_state(temp);
           }
 		break;
