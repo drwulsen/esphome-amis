@@ -211,7 +211,7 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "3.8.1: %d", temp);
             if(this->reactive_energy_a_positive_sensor)
               ESP_LOGD(TAG, "reactive_energy_a_positive_sensor: %d", reactive_energy_a_positive_sensor);
-//              this->reactive_energy_a_positive_sensor->publish_state(temp);
+              this->reactive_energy_a_positive_sensor->publish_state(temp);
           }
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
@@ -220,7 +220,7 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "4.8.1: %d", temp);
             if(this->reactive_energy_a_negative_sensor)
               ESP_LOGD(TAG, "reactive_energy_a_negative_sensor: %d", reactive_energy_a_negative_sensor);
- //             this->reactive_energy_a_negative_sensor->publish_state(temp);
+              this->reactive_energy_a_negative_sensor->publish_state(temp);
           }
          if(dif == 0x04 && dife == 0x00 && vife == 0x14) {
             // 3.7.0
@@ -229,7 +229,7 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "3.7.0: %d", temp);
             if(this->reactive_instantaneous_power_a_positive_sensor)
               ESP_LOGD(TAG, "reactive_instantaneous_power_a_positive_sensor: %d", reactive_energy_a_positive_sensor);
-//              this->reactive_instantaneous_power_a_positive_sensor->publish_state(temp);
+              this->reactive_instantaneous_power_a_positive_sensor->publish_state(temp);
           }
           if(dif == 0x04 && dife == 0x00 && vife == 0x3c) {
             // 4.7.0
@@ -238,7 +238,7 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "4.7.0: %d", temp);
             if(this->reactive_instantaneous_power_a_negative_sensor)
               ESP_LOGD(TAG, "reactive_instantaneous_power_a_negative_sensor: %d", reactive_instantaneous_power_a_negative_sensor);
-//              this->reactive_instantaneous_power_a_negative_sensor->publish_state(temp);
+              this->reactive_instantaneous_power_a_negative_sensor->publish_state(temp);
           }
         break;
         case 0x2b:
@@ -260,7 +260,7 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "2.7.0: %d", temp);
             if(this->instantaneous_power_a_negative_sensor)
               ESP_LOGD(TAG, "instantaneous_power_a_negative_sensor: %d", instantaneous_power_a_negative_sensor);
-//              this->instantaneous_power_a_negative_sensor->publish_state(temp);
+              this->instantaneous_power_a_negative_sensor->publish_state(temp);
           }
         break;
       }
