@@ -3,6 +3,7 @@
 #include "esphome/core/log.h"
 #include <sstream>
 #include <iomanip>
+#include <inttypes.h>
 
 namespace esphome {
 namespace amis {
@@ -184,7 +185,7 @@ void amis::AMISComponent::amis_decode() {
           if(dif == 0x04) {
             // 1.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
-            ESP_LOGD(TAG, "1.8.0: %u", temp);
+            ESP_LOGD(TAG, "1.8.0: %zu", temp);
             if(this->energy_a_positive_sensor) {
               this->energy_a_positive_sensor->publish_state(temp);
             }
