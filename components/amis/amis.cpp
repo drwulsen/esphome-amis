@@ -204,6 +204,7 @@ void amis::AMISComponent::amis_decode() {
             // 3.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "3.8.1: %d", temp);
+            long reactive_energy_a_positive_sensor;
             if(this->reactive_energy_a_positive_sensor)
               ESP_LOGD(TAG, "reactive_energy_a_positive_sensor: %d", reactive_energy_a_positive_sensor);
 //              this->reactive_energy_a_positive_sensor->publish_state(temp);
