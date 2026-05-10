@@ -205,7 +205,7 @@ void amis::AMISComponent::amis_decode() {
             if(this->energy_a_negative_sensor)
               this->energy_a_negative_sensor->publish_state(temp);
           }
-        break;/*
+        break;
         case 0xfb:
           if(dif == 0x84 && dife == 0x10 && vife == 0x73) {
             // 3.8.1
@@ -214,6 +214,7 @@ void amis::AMISComponent::amis_decode() {
             if(this->reactive_energy_a_positive_sensor)
               this->reactive_energy_a_positive_sensor->publish_state(temp);
           }
+		break;/*
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
