@@ -1,4 +1,3 @@
-// Just some comment, so esphome will update
 #include "amis.h"
 #include "aes.h"
 #include "esphome/core/log.h"
@@ -17,6 +16,7 @@ static const char *TAG = "amis";
 void amis::AMISComponent::setup() {
   this->bytes = 0;
   this->expect = 0;
+
 }
 
 void amis::AMISComponent::hex2bin(const std::string s, uint8_t *buf) {
@@ -86,7 +86,6 @@ void amis::AMISComponent::amis_decode() {
   uint8_t vife;
   uint8_t data_len;
 
-  ESP_LOGD(TAG, "Started AMIS");
   if(this->bytes < 78) {
     ESP_LOGD(TAG, "received incomplete frame");
     goto out;
@@ -122,6 +121,8 @@ void amis::AMISComponent::amis_decode() {
 
     // https://github.com/volkszaehler/vzlogger/blob/master/src/protocols/MeterOMS.cpp
     // line 591
+
+
 
     i = 2;
     // 80 is the maximum size of data that we decrypt
@@ -200,6 +201,8 @@ void amis::AMISComponent::amis_decode() {
             // 2.8.0
             memcpy(&temp, &this->decode_buffer[i], data_len);
             ESP_LOGD(TAG, "2.8.0: %d", temp);
+		  }
+		break;/*
             if(this->energy_a_negative_sensor)
               this->energy_a_negative_sensor->publish_state(temp);
           }
@@ -212,7 +215,6 @@ void amis::AMISComponent::amis_decode() {
             if(this->reactive_energy_a_positive_sensor)
               this->reactive_energy_a_positive_sensor->publish_state(temp);
           }
-		break;
           if(dif == 0x84 && dife == 0x10 && vife == 0x3c) {
             // 4.8.1
             memcpy(&temp, &this->decode_buffer[i], data_len);
@@ -251,9 +253,10 @@ void amis::AMISComponent::amis_decode() {
             ESP_LOGD(TAG, "2.7.0: %d", temp);
             if(this->instantaneous_power_a_negative_sensor)
               this->instantaneous_power_a_negative_sensor->publish_state(temp);
-          }
+          }*/
         break;
-      }      
+      }
+      
       
       i += data_len;
     }
